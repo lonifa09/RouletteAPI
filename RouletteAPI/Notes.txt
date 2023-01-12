@@ -1,0 +1,8 @@
+﻿Roulette App Tool
+1. The TargetFramework is <TargetFramework>net5.0</TargetFramework>
+2. Logger - Configure the logging toll using the SeriLog tool available at Nugget Packages
+	- The logger will be using the file logging operation and logging at C:\Roulette\logs
+3. Swagger - I an already available tool to document the API and good for testing the API
+	- accessible using https://localhost:44381/swagger/index.html, you will have to update the port
+4. Cors (Cross-Origin Resource Sharing) Policy - manages sharing of resource accross domains. maganing 3rd party use of local APIs.
+	- 
