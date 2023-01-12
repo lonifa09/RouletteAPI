@@ -1,4 +1,5 @@
 ﻿Roulette App Tool
+Configurations
 1. The TargetFramework is <TargetFramework>net5.0</TargetFramework>
 2. Logger - Configure the logging toll using the SeriLog tool available at Nugget Packages
 	- The logger will be using the file logging operation and logging at C:\Roulette\logs
@@ -6,3 +7,45 @@
 	- accessible using https://localhost:44381/swagger/index.html, you will have to update the port
 4. Cors (Cross-Origin Resource Sharing) Policy - manages sharing of resource accross domains. maganing 3rd party use of local APIs.
 	- 
+
+Classes and EntityFramework
+1. Classes added on the Data folder. Will implement a code first engineering
+	- Bet
+	- PayOut
+	- Player
+	- Spin
+	- Table
+	- TableSection
+	- Wheel
+	- DatabaseContext - is a bridge between our entity classes and database
+2. Updating the AppSetting
+	- Created a database connectionString
+	- "ConnectionStrings": {
+		"sqlConnection": "server=localhost\\SQLEXPRESS; database=Roulette_db; integrated security=true; Encrypt=False"
+	  },
+3.Package manager Console for scafholding the database
+    Type teh following commands
+	- Add-Migration DatabaseCreated, to create a preliminery file on the Migration folder
+	- Update-Database, to create databse, all the tables as specified in the appsettings and create a snapshot in the Migration folder
+4. Seeding Data for the following tables
+	- Table
+	- TableSection
+	- Wheel
+	Typed teh following commands
+	- Add-Migration SeedingData
+	- Update-Database, updates the db table with data and a snapshot of seedd data in the Migration folder
+
+5. Setup the Service Repositories parttern
+	- Create two folders, for the seperation of concerns where 
+		- IRepository, IGenericRepository class is an interface
+		- Repository, GenericRepository class the inherits the IGenericReposiptory and implements the interface which generates the methods
+			- Implement depencacy injection on an instance of the DatabaseContext and DBset
+			- Constructor for the DatabaseContext and DbSet
+		- IUnitOfWork Framework, 
+		- UnitOfWork implementation 
+
+6. Create Data Transfer Object(DTO) and AutoMapper, 
+	Linking DTO to our domain objects, decoupling users from communicating with the objects. AutoMapper will facilitate matching of DTO to a class.
+	Create a folder called Model, infact DTOs are models where validation of parameters is applied
+	- 
+
