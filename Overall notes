@@ -1,0 +1,17 @@
+Step 1.
+1. Made a backup of the Northwind db and placed in the Git Repository
+2. Resore the db and execute the stored procedure.
+
+Step 2.
+Implemented the four APIs as requested:
+- PlaceBet
+- Spin
+- Payout
+- ShowPreviousSpins
+
+What I have missed
+1. Global Exception Handling
+2. Unit Tests, I totally have no experience with this but I know with time I will get it.
+3. Dapper, I also have no experience with it.
+
+I have also created Notes file in the Project folder.
