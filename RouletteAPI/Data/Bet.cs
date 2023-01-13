@@ -11,18 +11,18 @@ namespace RouletteAPI.Data
         public decimal Amount { get; set; }
         public DateTime BetDate { get; set; }
         public string Status { get; set; }
-
-        [ForeignKey(nameof(Table))]
-        public int TableId { get; set; }
-        public Table Table { get; set; }
-
-        [ForeignKey(nameof(TableSection))]
-        public int TableSectionId { get; set; }
-        public TableSection TableSection { get; set; }
-
-        [ForeignKey(nameof(Player))]
         public int PlayerId { get; set; }
-        public Player Player { get; set; }
-        public virtual IList<Bet> Bets { get; set; }
+        public int TableId { get; set; }
+        public int TableSectionId { get; set; }
+
+        //[ForeignKey(nameof(Player))]
+        //public Player Player { get; set; }
+
+        //[ForeignKey(nameof(Table))]
+        //public Table Table { get; set; }
+
+        //[ForeignKey(nameof(TableSection))]
+        //public TableSection TableSection { get; set; }
+        public virtual IList<PayOut> PayOuts { get; set; }
     }
 }

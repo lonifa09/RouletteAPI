@@ -17,9 +17,9 @@ namespace RouletteAPI.Models
     public class BetDTO : CreateBetDTO
     {
         public int BetId { get; set; }
-        public TableDTO Tables { get; set; }
-        public TableSectionDTO TableSections { get; set; }
-        public PlayerDTO Players { get; set; }
+        //public TableDTO Tables { get; set; }
+        //public TableSectionDTO TableSections { get; set; }
+        //public PlayerDTO Players { get; set; }
         public virtual IList<PayOutDTO> PayOuts { get; set; }
     }
 }

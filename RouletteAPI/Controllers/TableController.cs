@@ -24,20 +24,40 @@ namespace RouletteAPI.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetTables()
-        {
-            try
-            {
-                var tables = await _unitOfWork.Tables.GetAll();
-                var result = _mapper.Map<IList<TableDTO>>(tables);
-                return Ok(tables);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Something went wrong in the {nameof(GetTables)}");
-                return StatusCode(500, "Internal Server Error, Please Try Again Later");
-            }
-        }
+        //[HttpGet]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        //public async Task<IActionResult> GetTables()
+        //{
+        //    try
+        //    {
+        //        var tables = await _unitOfWork.Tables.GetAll();
+        //        var results = _mapper.Map<IList<TableDTO>>(tables);
+        //        return Ok(results);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError(ex, $"Something went wrong in the {nameof(GetTables)}");
+        //        return StatusCode(500, "Internal Server Error, Please Try Again Later");
+        //    }
+        //}
+
+        //[HttpGet("{id:int}")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        //public async Task<IActionResult> GetTable(int id)
+        //{
+        //    try
+        //    {
+        //        var table = await _unitOfWork.Tables.Get(c => c.TableId == id, new List<string> { "Bets" });
+        //        var result = _mapper.Map<TableDTO>(table);
+        //        return Ok(result);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError(ex, $"Something went wrong in the {nameof(GetTable)}");
+        //        return StatusCode(500, "Internal Server Error, Please Try Again Later");
+        //    }
+        //}
     }
 }

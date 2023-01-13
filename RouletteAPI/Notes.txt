@@ -48,4 +48,12 @@ Classes and EntityFramework
 	Linking DTO to our domain objects, decoupling users from communicating with the objects. AutoMapper will facilitate matching of DTO to a class.
 	Create a folder called Model, infact DTOs are models where validation of parameters is applied
 	- 
+7. Configure IdentityService in the DbContext and startup
+	-User Identity 
+		- Add-Migration AddIdentityUser
+
+8. Controllers with their functions
+
+
+
 

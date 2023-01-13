@@ -25,6 +25,8 @@ namespace RouletteAPI.Configurations
             CreateMap<Spin, CreateSpinDTO>().ReverseMap();
             CreateMap<PayOut, PayOutDTO>().ReverseMap();
             CreateMap<PayOut, CreatePayOutDTO>().ReverseMap();
+            CreateMap<Player, UserDTO>().ReverseMap();
+            CreateMap<ApiUser, UserDTO>().ReverseMap();
         }
     }
 }

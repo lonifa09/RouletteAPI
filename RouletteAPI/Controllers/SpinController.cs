@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using RouletteAPI.Data;
+using System.Linq;
 
 namespace RouletteAPI.Controllers
 {
@@ -49,15 +50,25 @@ namespace RouletteAPI.Controllers
                             SpinDate= DateTime.Now
                         };
                         await _unitOfWork.Spins.Insert(spin);
-                        Bet bet = new Bet()
-                        { 
-                         BetId = item.BetId,
-                         Status = "Betted"
-                        };
+                        await _unitOfWork.Save();
+
+                        var bet = await _unitOfWork.Bets.Get(c => c.BetId == item.BetId);
+                        if (number != item.TableId )
+                        {
+                            item.Amount = item.Amount - item.Amount;
+                            bet.Status = "Loss";
+                        }
+                        else
+                        {
+                            item.Amount = item.Amount * 2;
+                            bet.Status = "Win";
+                        }
+                        bet.Amount = item.Amount;
                         _unitOfWork.Bets.Update(bet);
+                        await _unitOfWork.Save();
                     }
-                    var result = _mapper.Map<IList<SpinDTO>>(wheel);
-                    return Ok(result);
+                    var result = _mapper.Map<WheelDTO>(wheel);
+                    return Ok($"The Number is {result.Number} and Color {result.Color}");
                 }
                 else
                 {
@@ -67,6 +78,23 @@ namespace RouletteAPI.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Something went wrong in the {nameof(Spin)}");
+                return StatusCode(500, "Internal Server Error, Please Try Again Later");
+            }
+        }
+
+        [HttpGet]
+        [Route("ShowPreviousSpins")]
+        public async Task<IActionResult> GetSpins()
+        {
+            try
+            {
+                var spins = await _unitOfWork.Spins.GetAll();
+                var results = _mapper.Map<IList<SpinDTO>>(spins);
+                return Ok(results);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Something went wrong in the {nameof(GetSpins)}");
                 return StatusCode(500, "Internal Server Error, Please Try Again Later");
             }
         }
