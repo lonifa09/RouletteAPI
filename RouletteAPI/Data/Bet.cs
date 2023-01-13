@@ -10,6 +10,7 @@ namespace RouletteAPI.Data
         public int BetId { get; set; }
         public decimal Amount { get; set; }
         public DateTime BetDate { get; set; }
+        public string Status { get; set; }
 
         [ForeignKey(nameof(Table))]
         public int TableId { get; set; }

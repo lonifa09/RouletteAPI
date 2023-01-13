@@ -9,6 +9,7 @@ namespace RouletteAPI.Models
     {
         public decimal Amount { get; set; }
         public DateTime BetDate { get; set; }
+        public string Status { get; set; }
         public int TableId { get; set; }
         public int TableSectionId { get; set; }
         public int PlayerId { get; set; }
